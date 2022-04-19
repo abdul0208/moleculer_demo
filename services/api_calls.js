@@ -20,7 +20,8 @@ broker.createService({
         routes:[{
             path:"/",
             aliases:{
-                "login":"connect.login"
+                "login":"connect.login",
+                "getItem":"connect.getItem"
             }
         }]
 
@@ -32,10 +33,10 @@ broker
       .then(()=>{
           return broker
                        .call("connect.login")
-                       .then((r)=>{
-                        // broker.logger.info(r)
-                        broker.call("connect.getItem",{id:257,flag:433,ssid:r.sid}).then((r)=>{
-                            broker.logger.info(r)
-                        })
-                       })
+                    //    .then((r)=>{
+                    //     // broker.logger.info(r)
+                    //     broker.call("connect.getItem",{id:257,flag:433,ssid:r.sid}).then((r)=>{
+                    //         broker.logger.info(r)
+                    //     })
+                    //    })
       })

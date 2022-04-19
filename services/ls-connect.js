@@ -75,8 +75,10 @@ module.exports = {
                 // },ctx.params.ssid).then((res)=>{
                 //     return resolve(res)
                 // })
-                ctx.call('connect.wexec',{svc:'core/search_item',params:{"id":ctx.params.id,"flags": ctx.params.flag},ssid:ctx.params.ssid}).then((r)=>{
-                    return resolve(r)
+                ctx.call('connect.login').then((res)=>{
+                    ctx.call('connect.wexec',{svc:'core/search_item',params:{"id":257,"flags": 433},ssid:res.sid}).then((r)=>{
+                        return resolve(r)
+                    })
                 })
                 
             })
