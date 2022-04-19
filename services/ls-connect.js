@@ -34,7 +34,7 @@ module.exports = {
                     svc: ctx.params.svc,
                     params: JSON.stringify(ctx.params.params)
                 };
-                console.log(url,form)
+                // console.log(url,form)
                 request(url, {
                     json: true,
                     form: form
@@ -66,17 +66,10 @@ module.exports = {
             })
         },
         getItem (ctx) {
-            // console.log(ctx)
+            // console.log(ctx.params)
             return new Promise (function(resolve,reject){
-                // wexec('core/search_item', {
-                //     "id": ctx.params.id,
-                //     "flags": ctx.params.flags,
-            
-                // },ctx.params.ssid).then((res)=>{
-                //     return resolve(res)
-                // })
                 ctx.call('connect.login').then((res)=>{
-                    ctx.call('connect.wexec',{svc:'core/search_item',params:{"id":257,"flags": 433},ssid:res.sid}).then((r)=>{
+                    ctx.call('connect.wexec',{svc:'core/search_item',params:{"id":ctx.params.id,"flags": ctx.params.flags},ssid:res.sid}).then((r)=>{
                         return resolve(r)
                     })
                 })
@@ -112,7 +105,7 @@ module.exports = {
                            wialonTimeZone: wialonTimeZone,
                            // isLocal: checkLocalServer(),
                        };
-                       console.table(loginData);
+                    //    console.table(loginData);
                        
                            return resolve(loginData)
                        
